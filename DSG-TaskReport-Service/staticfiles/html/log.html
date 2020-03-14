@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>运行日志</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="div_main">
+        <!-- <textarea name="" id="txt_log" style="height:500px;width: 100%">{{logMsg}}</textarea> -->
+        <div id="div_log" style="height:700px;overflow: auto;border:1px solid gray">
+            <p style="font-size: 10px;height:15px" v-for="itm in logList">[{{itm.Time}}] {{itm.Content}}</p>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#div_main",
+            data: {
+                logMsg: "",
+                sleepSecond: 2,
+                logGetCount: 100,
+                logList: []
+            },
+            created() {
+                this.getLog();
+            },
+            methods: {
+                getLog() {
+                    var that = this;
+                    var d = {
+                        getCount: that.logGetCount
+                    }
+                    setInterval(() => {
+                        $.get("/api/app/getlogs", d, function (np) {
+                            if (np.result) {
+                                that.logList = np.data;
+                                that.showLastLine();
+                            }
+                        }, "json");
+                    }, that.sleepSecond * 1000);
+                },
+                showLastLine() {
+                    var div = document.getElementById('div_log');
+                    div.scrollTop = div.scrollHeight;
+                },
+                sleep(delay) {
+                    var start = (new Date()).getTime();
+                    while ((new Date()).getTime() - start < delay) {
+                        continue;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

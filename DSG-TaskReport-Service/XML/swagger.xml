@@ -1,0 +1,501 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DSG-TaskReport-Service</name>
+    </assembly>
+    <members>
+        <member name="M:Common.HttpHelper.GetResponse(System.String,System.Int32)">
+            <summary>
+            get请求
+            </summary>
+            <param name="url"></param>
+            <param name="timeoutSecond"></param>
+            <returns></returns>       
+        </member>
+        <member name="M:Common.HttpHelper.PostResponse(System.String,System.String,System.Int32)">
+            <summary>
+            post请求
+            </summary>
+            <param name="url"></param>
+            <param name="postData">post数据</param>
+            <param name="timeoutSecond"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Common.Logger.Info(System.String,System.Exception)">
+            <summary>
+            普通日志
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Common.Logger.Warn(System.String,System.Exception)">
+            <summary>
+            告警日志
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Common.Logger.Error(System.String,System.Exception)">
+            <summary>
+            错误日志
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="F:Common.MysqlEntityCoding.filePath">
+            <summary>
+            生成文件的路径
+            </summary>
+        </member>
+        <member name="F:Common.MysqlEntityCoding.dbName">
+            <summary>
+            数据库名称
+            </summary>
+        </member>
+        <member name="F:Common.MysqlEntityCoding.isAllowOverwrite">
+            <summary>
+            是否允许覆盖写入
+            </summary>
+        </member>
+        <member name="F:Common.MysqlEntityCoding.typeDik">
+            <summary>
+            数据库字段类型对应c#数据类型
+            </summary>
+        </member>
+        <member name="M:Common.RedisHelper.GetKeyForRedis(System.String)">
+            <summary>
+            取得redis的Key名称
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Common.RedisHelper.Exists(System.String)">
+            <summary>
+            判断当前Key是否存在数据
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Common.RedisHelper.SetExpire(System.String,System.Int32)">
+            <summary>
+            设置key过期时间
+            </summary>
+            <param name="key"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Common.RedisHelper.GetCache``1(System.String)">
+            <summary>
+            取得缓存数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Common.RedisHelper.SetCache(System.String,System.Object)">
+            <summary>
+            设置缓存数据
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Common.RedisHelper.SetCache(System.String,System.Object,System.DateTime)">
+            <summary>
+            设置绝对过期时间
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="expiressAbsoulte"></param>
+        </member>
+        <member name="M:Common.RedisHelper.SetCache(System.String,System.Object,System.Int32)">
+            <summary>
+            设置相对过期时间
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="expSecond"></param>
+        </member>
+        <member name="M:Common.RedisHelper.KeyMigrate(System.String,System.Net.EndPoint,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="endPoint"></param>
+            <param name="database"></param>
+            <param name="timeountseconds"></param>
+        </member>
+        <member name="M:Common.RedisHelper.RemoveCache(System.String)">
+            <summary>
+            移除redis
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:Common.RedisHelper.Dispose">
+            <summary>
+            销毁连接
+            </summary>
+        </member>
+        <member name="T:Common.ShaHashHelper">
+            <summary>
+            SHA1 散列算法
+            </summary>
+        </member>
+        <member name="M:Common.ShaHashHelper.GetShaHash(System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="input">源字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Common.ShaHashHelper.VerifyShaHash(System.String,System.String)">
+            <summary>
+            验证
+            </summary>
+            <param name="input"></param>
+            <param name="hash"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Common.NormalResponse">
+            <summary>
+            一般返回格式,JSON格式
+            </summary>
+        </member>
+        <member name="P:Common.NormalResponse.result">
+            <summary>
+            处理结果，true:成功，false:失败
+            </summary>
+        </member>
+        <member name="P:Common.NormalResponse.msg">
+            <summary>
+            处理消息或处理过程
+            </summary>
+        </member>
+        <member name="P:Common.NormalResponse.errmsg">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:Common.NormalResponse.data">
+            <summary>
+            数据，可能是string或者json或者json数组
+            </summary>
+        </member>
+        <member name="T:Common.ICache">
+            <summary>
+            缓存服务，一般来讲存在两种缓存服务，一是redis，二是mysql sys_cache_t表
+            </summary>
+        </member>
+        <member name="M:DBUtility.DButility.AesEncryptToHex(System.String,System.String)">
+            <summary>
+             AES 加密
+            </summary>
+            <param name="str">明文（待加密）</param>
+            <param name="key">密文</param>
+            <returns></returns>
+        </member>
+        <member name="M:DBUtility.DButility.AesDecryptFromHex(System.String,System.String)">
+            <summary>
+             AES 解密
+            </summary>
+            <param name="str">明文（待解密）</param>
+            <param name="key">密文</param>
+            <returns></returns>
+        </member>
+        <member name="M:DBUtility.DButility.GetTimeStamp">
+            <summary>
+            获取时间戳
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DBUtility.DButility.GetRandom(System.Int32,System.Int32)">
+            <summary>
+            取随机数
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DBUtility.DButility.GetCurrentTimeUnix">
+            <summary>
+            获取当前本地时间戳
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DBUtility.DButility.GetUnixDateTime(System.Int64)">
+            <summary>
+            时间戳转换为本地时间对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DBUtility.DButility.UnicodeToString(System.String)">
+            <summary>
+            Unicode转字符串
+            </summary>
+            <param name="source">经过Unicode编码的字符串</param>
+            <returns>正常字符串</returns>
+        </member>
+        <member name="M:DBUtility.DButility.StreamToString(System.IO.Stream)">
+            <summary>
+            Stream流转化为字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DBUtility.DButility.RequestFormToString(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            RequestForm转换成String, key=value格式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DBUtility.DButility.GetMD532(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sDataIn"></param>
+            <param name="move">给空即可</param>
+            <returns></returns>
+        </member>
+        <member name="M:DBUtility.DButility.IsChinese(System.String)">
+            <summary>
+            判断字符串全部是否是中文。返回true 则表示含有非中文
+            </summary>
+            <param name="str_chinese"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DBUtility.ModelHandler`1.FillModelByDataSet(System.Data.DataSet)">
+            <summary>
+            填充对象列表：用DataSet的第一个表填充实体类
+            </summary>
+            <param name="ds">DataSet</param>
+            <returns></returns>
+        </member>
+        <member name="T:DBUtility.ModelHandler`1.ModelType">
+            <summary>
+            类型枚举
+            </summary>
+        </member>
+        <member name="M:DBUtility.ModelHandler`1.FillModelByDataTable(System.Data.DataTable)">
+            <summary>  
+            填充对象列表：用DataTable填充实体类
+            </summary>  
+        </member>
+        <!-- 对于成员“M:DBUtility.ModelHandler`1.DataTableToList``1(System.Data.DataTable)”忽略有格式错误的 XML 注释 -->
+        <member name="M:DBUtility.ModelHandler`1.FillModelByDataRow(System.Data.DataRow)">
+            <summary>  
+            填充对象：用DataRow填充实体类
+            </summary>  
+        </member>
+        <member name="M:DSG_TaskReport_Service.Controllers.AppController.GetLogs(System.Int32)">
+            <summary>
+            获取运行日志
+            </summary>
+            <param name="getCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DSG_TaskReport_Service.Controllers.CheckController.GetTime">
+            <summary>
+            获取服务器时间
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DSG_TaskReport_Service.Controllers.TaskReportController.GetDailySignalReport(System.DateTime,System.String)">
+            <summary>
+            获取每日信道日报
+            </summary>
+            <param name="day"></param>
+            <param name="deviceId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DSG_TaskReport_Service.Controllers.TaskReportController.GetDailyFreqReport(System.DateTime,System.String)">
+            <summary>
+            获取每日频谱日报
+            </summary>
+            <param name="day"></param>
+            <param name="deviceId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:DSG_TaskReport_Service.LogInfo.Type">
+            <summary>
+            日志类型，Info,Warn,Error
+            </summary>
+        </member>
+        <member name="T:DSG_TaskReport_Service.FreqSampleService">
+            <summary>
+            频谱采样报告制作
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:DSG_TaskReport_Service.TaskFreqModule.FreqStart">
+            <summary>
+            频率开始 MHz
+            </summary>
+        </member>
+        <member name="P:DSG_TaskReport_Service.TaskFreqModule.FreqStop">
+            <summary>
+            频率结束 MHz
+            </summary>
+        </member>
+        <member name="P:DSG_TaskReport_Service.TaskFreqModule.FreqStep">
+            <summary>
+            频谱步进 KHz
+            </summary>
+        </member>
+        <member name="P:DSG_TaskReport_Service.TaskModels.TaskUseAssess.ModuleSecond">
+            <summary>
+            建模时间
+            </summary>
+        </member>
+        <member name="P:DSG_TaskReport_Service.TaskModels.TaskUseAssess.MaxPercent">
+            <summary>
+            超标门限 
+            </summary>
+        </member>
+        <member name="P:DSG_TaskReport_Service.TaskModels.TaskUseAssess.MinPercent">
+            <summary>
+            故障门限
+            </summary>
+        </member>
+        <member name="P:DSG_TaskReport_Service.TaskModels.TaskUseAssess.HoldSecond">
+            <summary>
+            持续时间
+            </summary>
+        </member>
+        <member name="P:DSG_TaskReport_Service.TaskModels.TaskUseAssess.WatchPoints">
+            <summary>
+            关注频点
+            </summary>
+        </member>
+        <member name="T:DSG_TaskReport_Service.SignalInfo">
+            <summary>
+            信号结构体，主要用于信号分析，包含信号属性，多为频谱Parse信号
+            </summary>
+        </member>
+        <member name="M:DSG_TaskReport_Service.SignalInfo.Parse(DSGServerCore.FreqBscanInfo,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            普通信号分离   从一副频谱中分离出信号列表
+            </summary>
+            <param name="info">频谱数据</param>
+            <param name="width">信号分离带宽</param>
+            <param name="range">信号分离幅度</param>
+            <param name="minValue">分离门限</param>
+            <returns></returns>
+        </member>
+        <member name="M:DSG_TaskReport_Service.SignalInfo.ParseByDiffer(DSGServerCore.FreqBscanInfo,DSGServerCore.FreqBscanInfo,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            差分谱信号分离
+            </summary>
+            <param name="realFreq">真实频谱</param>
+            <param name="differRealFreq">差分谱</param>
+            <param name="width">信号分离带宽</param>
+            <param name="range">信号分离幅度</param>
+            <param name="minValue">分离门限</param>
+            <param name="minDiffer">最小差值</param>
+            <returns></returns>
+        </member>
+        <member name="M:DSG_TaskReport_Service.UserTaskLoopWorker.DoReport(DSGServerCore.UserTaskInfo)">
+            <summary>
+            制作报告
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="T:DSGServerCore.TaskFreqSample">
+            <summary>
+            频谱取样
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskFreqSample.Interval">
+            <summary>
+            取样时间间隔，单位秒
+            </summary>
+        </member>
+        <member name="T:DSGServerCore.TaskillegalSignalCatch">
+            <summary>
+            非法信号捕获(包括黑广播捕获)
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskillegalSignalCatch.Range">
+            <summary>
+            幅差
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskillegalSignalCatch.Width">
+            <summary>
+            带宽
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskillegalSignalCatch.Threshold">
+            <summary>
+            预警门限
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskillegalSignalCatch.IllegalCount">
+            <summary>
+            出现次数
+            </summary>
+        </member>
+        <member name="T:DSGServerCore.TaskSignalStatusWarn">
+            <summary>
+            状态预警
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskSignalStatusWarn.ModuleSecond">
+            <summary>
+            建模时间
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskSignalStatusWarn.MaxPercent">
+            <summary>
+            超标门限 
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskSignalStatusWarn.MinPercent">
+            <summary>
+            故障门限
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskSignalStatusWarn.HoldSecond">
+            <summary>
+            持续时间
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskSignalStatusWarn.WatchPoints">
+            <summary>
+            关注频点
+            </summary>
+        </member>
+        <member name="T:DSGServerCore.TaskSignalWatch">
+            <summary>
+            台站监督
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskSignalWatch.WatchPoints">
+            <summary>
+            关注频点
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskSignalWatch.Range">
+            <summary>
+            幅差
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskSignalWatch.Width">
+            <summary>
+            带宽
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskSignalWatch.Threshold">
+            <summary>
+            门限电平
+            </summary>
+        </member>
+        <member name="P:DSGServerCore.TaskSignalWatch.HoldSecond">
+            <summary>
+            持续时间
+            </summary>
+        </member>
+        <member name="P:ThuInjecter.ServiceBean.BeanType">
+            <summary>
+            类型，0表示接口-impl;1表示单类
+            </summary>
+        </member>
+    </members>
+</doc>
